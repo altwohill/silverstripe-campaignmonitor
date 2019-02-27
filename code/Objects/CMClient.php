@@ -110,7 +110,7 @@ class CMClient extends LazyLoadedCMObject
 
     protected function loadFullDetails()
     {
-        $interface = new CS_REST_Clients($this->ID, $this->apiKey);
+        $interface = new CS_REST_Clients($this->ID, ['api_key' => $this->apiKey]);
         $result = $interface->get();
         $response = $this->parseResult($result);
         $this->populateFrom($response);
@@ -120,10 +120,11 @@ class CMClient extends LazyLoadedCMObject
      * Retrieves all lists for this client
      *
      * @return ArrayList[CMList]
+     * @throws CMError
      */
     public function Lists()
     {
-        $interface = new CS_REST_Clients($this->ID, $this->apiKey);
+        $interface = new CS_REST_Clients($this->ID, ['api_key' => $this->apiKey]);
         $result = $interface->get_lists();
         $response = $this->parseResult($result);
 
@@ -144,10 +145,11 @@ class CMClient extends LazyLoadedCMObject
      * Retrieves all campaigns for this client
      *
      * @return ArrayList[CMCampaign]
+     * @throws CMError
      */
     public function Campaigns()
     {
-        $interface = new CS_REST_Clients($this->ID, $this->apiKey);
+        $interface = new CS_REST_Clients($this->ID, ['api_key' => $this->apiKey]);
         $result = $interface->get_campaigns();
         $response = $this->parseResult($result);
 

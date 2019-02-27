@@ -35,7 +35,7 @@ class CMCampaign extends LazyLoadedCMObject
 
     protected function loadFullDetails()
     {
-        $interface = new CS_REST_Clients($this->ClientID, $this->apiKey);
+        $interface = new CS_REST_Clients($this->ClientID, ['api_key' => $this->apiKey]);
         $result = $interface->get_campaign();
         $response = $this->parseResult($result);
         $this->populateFrom($response);

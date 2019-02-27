@@ -12,15 +12,12 @@ Simple implementation of the campaign monitor API within Silverstripe
 
 ## Requirements
 
- * SilverStripe 4.0
- * PHP 5.3
- * Campaign Monitor PHP library 2.5.2
+ * SilverStripe 4.x
+
 
 ## Installation instructions
 
-composer require "tractorcow/silverstripe-campaignmonitor": "3.0.*@dev"
-
-composer require "campaignmonitor/createsend-php": "v2.5.2"
+composer require "tractorcow/silverstripe-campaignmonitor": "dev-master"
 
 
 ## Examples

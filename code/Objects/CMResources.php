@@ -22,7 +22,7 @@ class CMResources extends CMBase
      */
     public function Clients()
     {
-        $interface = new CS_REST_General($this->apiKey);
+        $interface = new CS_REST_General(['api_key' => $this->apiKey]);
         $result = $interface->get_clients();
         $response = $this->parseResult($result);
 

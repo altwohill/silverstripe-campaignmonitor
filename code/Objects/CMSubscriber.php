@@ -76,7 +76,7 @@ class CMSubscriber extends LazyLoadedCMObject
      */
     public function setCustomField($field, $value)
     {
-        $this->customFields['field'] = $value;
+        $this->customFields[$field] = $value;
     }
 
     /**
@@ -176,7 +176,7 @@ class CMSubscriber extends LazyLoadedCMObject
             throw new CMError("Could not build interface for CMSubscriber without a list ID and apiKey", 500);
         }
 
-        return new CS_REST_Subscribers($list->ID, $this->apiKey);
+        return new CS_REST_Subscribers($list->ID, ['api_key' => $this->apiKey]);
     }
 
     public function isNew()
@@ -214,6 +214,9 @@ class CMSubscriber extends LazyLoadedCMObject
         $this->Name = $value;
     }
 
+    /**
+     * @throws CMError
+     */
     protected function loadFullDetails()
     {
         $interface = $this->buildRestInterface();
@@ -227,6 +230,9 @@ class CMSubscriber extends LazyLoadedCMObject
         $this->originalEmail = $response->EmailAddress;
     }
 
+    /**
+     * @throws CMError
+     */
     public function Save()
     {
         $interface = $this->buildRestInterface();

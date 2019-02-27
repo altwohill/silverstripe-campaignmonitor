@@ -29,7 +29,7 @@ class CMError extends Exception
     /**
      * Retrieves the Campaign Monitor error code
      *
-     * @return
+     * @return int
      */
     public function getErrorCode()
     {

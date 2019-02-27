@@ -2,6 +2,7 @@
 
 namespace Tractorcow\CampaignMonitor;
 
+use CS_REST_Wrapper_Result;
 use SilverStripe\View\ViewableData;
 
 /**
@@ -11,7 +12,6 @@ use SilverStripe\View\ViewableData;
  */
 abstract class CMBase extends ViewableData
 {
-
     /**
      * The API key used for future requests
      *
@@ -21,18 +21,19 @@ abstract class CMBase extends ViewableData
 
     public function __construct($apiKey = null)
     {
+        parent::__construct();
         $this->apiKey = $apiKey;
     }
 
     /**
      * Checks that a result is successful
      *
-     * @param type $result
+     * @param CS_REST_Wrapper_Result $result
+     * @return bool
      * @throws CMError
      */
     protected function checkResult($result)
     {
-
         if (!$result->was_successful()) {
             throw new CMError($result->response->Message, $result->http_status_code);
         }
@@ -43,8 +44,9 @@ abstract class CMBase extends ViewableData
     /**
      * Safely extracts results from a CM API call
      *
-     * @param type $result
-     * @return type
+     * @param CS_REST_Wrapper_Result $result
+     * @return mixed
+     * @throws CMError
      */
     protected function parseResult($result)
     {
